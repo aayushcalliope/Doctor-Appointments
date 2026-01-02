@@ -12,18 +12,24 @@ import Appointment from './pages/Appointment';
 import RootLayout from './Layouts/RootLayout';
 
 function App() {
-  const router = createBrowserRouter(createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
-    <Route index element={<Home />}/>
-    <Route path="/doctors/:specialty" element={<Doctors/>}/>
-    <Route path="/login" element={<Login />}/>
-    <Route path="/about" element={<About />}/>
-    <Route path="/contact" element={<Contact />}/>
-    <Route path="/my-profile" element={<MyProfile />}/>
-    <Route path="/my-appointment" element={<MyAppointment/>}/>
-    <Route path="/appointment/:docId" element={<Appointment/>}/>
-    </Route>
-  ));
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route path="/" element={<RootLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/doctors" element={<Doctors />}>
+          <Route path=":specialty" element={<Doctors />} />
+        </Route>
+        <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/my-profile" element={<MyProfile />} />
+        <Route path="/my-appointment" element={<MyAppointment />} />
+        <Route path="/appointment" element={<Appointment />} >
+          <Route path=":docId" element={<Appointment/>} />
+        </Route>
+      </Route>
+    )
+  );
   return <RouterProvider router={router} />
 }
 
